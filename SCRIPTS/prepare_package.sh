@@ -32,6 +32,8 @@ cp -rf ./openwrt-mos/v2ray-geodata feeds/packages/net/v2ray-geodata & rm -rf ./o
 rm -rf ./feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
+
+
 ### 最后的收尾工作 ###
 # Lets Fuck
 if [ ! -d "package/base-files/files/usr/bin" ]; then
@@ -45,7 +47,7 @@ sed -i "/%D/a\ Built by OPoA($(date +%Y.%m.%d))" package/base-files/files/etc/ba
 sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 
 # Modify default hosename
-sed -i 's/OpenWrt/SUPERouter/g' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/SUPERouter/g' package/base-files/files/bin/config_generate
 # Password
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/$1$S2TRFyMU$E8fE0RRKR0jNadn3YLrSQ0:18690:0:99999:7:::/g' package/lean/default-settings/files/zzz-default-settings
 

@@ -43,7 +43,7 @@ CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_luci-app-cpufreq=y
 CONFIG_PACKAGE_luci-app-daed=y
 CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_luci-app-frps=m
+# CONFIG_PACKAGE_luci-app-frps=m
 CONFIG_PACKAGE_luci-app-opkg=y
 CONFIG_PACKAGE_luci-app-ramfree=y
 CONFIG_PACKAGE_luci-app-wechatpush=y
@@ -96,3 +96,6 @@ CONFIG_PACKAGE_luci-app-smartdns=y  # 添加 SmartDNS
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-app-argon-config=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
+
+CONFIG_PACKAGE_luci-app-frpc=y
+CONFIG_PACKAGE_luci-app-frps=y

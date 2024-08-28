@@ -16,7 +16,6 @@ jobs:
   build:
 
     runs-on: ubuntu-22.04
-    if: github.repository_owner_id == github.event.sender.id || github.event_name == 'schedule'
 
     steps:
       - name: Show system

@@ -77,7 +77,7 @@ jobs:
       - name: Copy FILES
         run: |
           cd openwrt
-          cp -rf ../PATCHS/files ./files
+          cp -rf ../PATCHES/files ./files
 
       - name: Make Config
         run: |

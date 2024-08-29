@@ -32,7 +32,19 @@ cp -rf ./openwrt-mos/v2ray-geodata feeds/packages/net/v2ray-geodata & rm -rf ./o
 rm -rf ./feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
+### 删除frp ###
+rm -rf feeds/luci/applications/luci-app-frpc
+rm -rf feeds/luci/applications/luci-app-frps
 
+# 从 coolsnowwolf 仓库中获取 luci-app-frpc 和 luci-app-frps 应用
+git clone --depth 1 https://github.com/coolsnowwolf/luci.git /tmp/luci
+
+# 复制 luci-app-frpc 和 luci-app-frps 应用到 feeds/luci/applications/
+cp -rf /tmp/luci/applications/luci-app-frpc feeds/luci/applications/
+cp -rf /tmp/luci/applications/luci-app-frps feeds/luci/applications/
+
+# 删除临时目录
+rm -rf /tmp/luci
 
 ### 最后的收尾工作 ###
 # Lets Fuck

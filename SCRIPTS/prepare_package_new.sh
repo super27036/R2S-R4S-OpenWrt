@@ -40,14 +40,14 @@ rm -rf feeds/luci/applications/luci-app-frps
 # svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-frpc feeds/luci/applications/luci-app-frps
 
 # 从 coolsnowwolf 仓库中获取 luci-app-frpc 和 luci-app-frps 应用
-git clone --depth 1 https://github.com/coolsnowwolf/luci.git /tmp/luci
+# git clone --depth 1 https://github.com/coolsnowwolf/luci.git /tmp/luci
 
 # 复制 luci-app-frpc 应用到 feeds/luci/applications/
-cp -rf /tmp/luci/applications/luci-app-frpc feeds/luci/applications/
-cp -rf /tmp/luci/applications/luci-app-frps feeds/luci/applications/
+# cp -rf /tmp/luci/applications/luci-app-frpc feeds/luci/applications/
+# cp -rf /tmp/luci/applications/luci-app-frps feeds/luci/applications/
 
 # 删除临时目录
-rm -rf /tmp/luci
+# rm -rf /tmp/luci
 
 
 

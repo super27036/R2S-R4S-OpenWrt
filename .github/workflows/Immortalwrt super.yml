@@ -71,7 +71,7 @@ jobs:
       - name: Prepare Package
         run: |
           cd openwrt
-          cp -f ../SCRIPTS/prepare_package_new.sh ./prepare_package.sh
+          cp -f ../SCRIPTS/prepare_package.sh ./prepare_package.sh
           /bin/bash prepare_package.sh
 
       - name: Copy FILES

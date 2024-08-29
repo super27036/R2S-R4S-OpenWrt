@@ -32,6 +32,7 @@ cp -rf ./openwrt-mos/v2ray-geodata feeds/packages/net/v2ray-geodata & rm -rf ./o
 rm -rf ./feeds/packages/lang/node
 git clone https://github.com/sbwml/feeds_packages_lang_node-prebuilt feeds/packages/lang/node
 
+# -------------- #
 ### 删除frp ###
 rm -rf feeds/luci/applications/luci-app-frpc
 rm -rf feeds/luci/applications/luci-app-frps
@@ -45,6 +46,7 @@ cp -rf /tmp/luci/applications/luci-app-frps feeds/luci/applications/
 
 # 删除临时目录
 rm -rf /tmp/luci
+# -------------- #
 
 ### 最后的收尾工作 ###
 # Lets Fuck

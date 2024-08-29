@@ -79,6 +79,13 @@ jobs:
           cd openwrt
           cp -rf ../PATCHES/files ./files
 
+  ##### 增加这一项预安装openclash的核心软件 #####
+      - name: Execute preset-clash-core.sh
+        run: |
+          cd openwrt
+          /bin/bash ../SCRIPTS/preset-clash-core.sh arm64  # 如果需要替换参数，请在此修改
+  ##### 增加这一项预安装openclash的核心软件 #####
+
       - name: Make Config
         run: |
           cd openwrt

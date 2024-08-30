@@ -1,4 +1,4 @@
-name: Immortalwrt super
+name: Immortalwrt super-home
 
 on:
   repository_dispatch:
@@ -124,15 +124,15 @@ jobs:
           gzip -d *.gz && exit 0
           gzip *.img
           releaseTag=${{ env.latest_release }}
-          sha256sum *.gz | tee R2S-R4S-OPoA-$releaseTag-$(date +%Y-%m-%d).sha256sum
-          mv *r2s*ext4* ./R2S-OPoA-$releaseTag-$(date +%Y-%m-%d)-ext4.img.gz
-          mv *r4s*ext4* ./R4S-OPoA-$releaseTag-$(date +%Y-%m-%d)-ext4.img.gz
-          mv *r2s*squashfs* ./R2S-OPoA-$releaseTag-$(date +%Y-%m-%d)-sfs.img.gz
-          mv *r4s*squashfs* ./R4S-OPoA-$releaseTag-$(date +%Y-%m-%d)-sfs.img.gz
+          sha256sum *.gz | tee R2S-R4S-super-home-$releaseTag-$(date +%Y-%m-%d).sha256sum
+          mv *r2s*ext4* ./R2S-super-home-$releaseTag-$(date +%Y-%m-%d)-ext4.img.gz
+          mv *r4s*ext4* ./R4S-super-home-$releaseTag-$(date +%Y-%m-%d)-ext4.img.gz
+          mv *r2s*squashfs* ./R2S-super-home-$releaseTag-$(date +%Y-%m-%d)-sfs.img.gz
+          mv *r4s*squashfs* ./R4S-super-home-$releaseTag-$(date +%Y-%m-%d)-sfs.img.gz
           cd ../openwrt
           cp .config ../artifact/config-full.seed
           ./scripts/diffconfig.sh > ../artifact/config-diff.seed
-          release_tag="R2S-R4S-OPoA-$releaseTag-$(date +%Y-%m-%d)"
+          release_tag="R2S-R4S-super-home-$releaseTag-$(date +%Y-%m-%d)"
           echo "release_tag=${release_tag}" >>$GITHUB_ENV
       - name: Upload Artifact
         uses: actions/upload-artifact@main

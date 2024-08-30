@@ -57,6 +57,9 @@ CONFIG_PACKAGE_luci-app-zerotier=y
 ### OPEN CLASH ###
 CONFIG_PACKAGE_luci-app-openclash=y  # 添加 OpenClash
 
+### Hello World ###
+CONFIG_PACKAGE_luci-app-vssr=y  # 添加 Hello World
+
 ### PASSWALL ###
 CONFIG_PACKAGE_luci-app-passwall=y
 CONFIG_PACKAGE_luci-app-passwall_Transparent_Proxy=y

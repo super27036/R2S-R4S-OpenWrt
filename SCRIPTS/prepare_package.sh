@@ -25,6 +25,12 @@ git clone -b randomPic --depth 1 https://github.com/msylgj/luci-theme-argon.git 
 git clone -b main --depth 1 https://github.com/msylgj/luci-app-tencentddns.git feeds/luci/applications/luci-app-tencentddns
 ln -sf ../../../feeds/luci/applications/luci-app-tencentddns ./package/feeds/luci/luci-app-tencentddns
 
+# -------------- #
+# Add Hello World #
+git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git feeds/luci/applications/lua-maxminddb
+git clone --depth=1 https://github.com/super27035/luci-app-vssr.git feeds/luci/applications/luci-app-vssr
+# -------------- #
+
 # WeChatPush
 rm -rf feeds/luci/applications/luci-app-wechatpush
 git clone -b master --depth 1 https://github.com/tty228/luci-app-wechatpush.git feeds/luci/applications/luci-app-wechatpush

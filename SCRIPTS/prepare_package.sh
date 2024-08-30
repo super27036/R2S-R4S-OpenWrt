@@ -32,6 +32,9 @@ git clone https://github.com/jerrykuku/lua-maxminddb.git feeds/luci/applications
 # 完整克隆 luci-app-vssr 仓库
 git clone https://github.com/super27035/luci-app-vssr.git feeds/luci/applications/luci-app-vssr
 # -------------- #
+# Add luci-app-ssr-plus #
+git clone --depth=1 https://github.com/fw876/helloworld feeds/luci/applications/helloworld
+# -------------- #
 
 # WeChatPush
 rm -rf feeds/luci/applications/luci-app-wechatpush

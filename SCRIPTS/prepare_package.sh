@@ -1,5 +1,3 @@
-# 注：这个.sh脚本可以成功编译出lede库中的frp，能把自己的frp预设编译进去 2014-08-29
-
 #!/bin/bash
 clear
 
@@ -9,6 +7,17 @@ sed -i 's/Os/O2/g' include/target.mk
 # 更新 Feeds
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+
+### 替换 feeds.conf.default 中的 luci URL ###
+OLD_URL="src-git luci https://github.com/immortalwrt/luci.git"
+NEW_URL="src-git luci https://github.com/super27035/R2S-R4S-Immortalwrt-luci.git"
+
+if grep -q "$OLD_URL" "feeds.conf.default"; then
+    sed -i "s|$OLD_URL|$NEW_URL|" "feeds.conf.default"
+    echo "已将 $OLD_URL 替换为 $NEW_URL"
+else
+    echo "未找到要替换的行：$OLD_URL"
+fi
 
 ### 必要的 Patches ###
 # mount cgroupv2
@@ -72,7 +81,7 @@ sed -i "/DISTRIB_REVISION/d" package/base-files/files/etc/openwrt_release
 sed -i "/%D/a\ Built by SUPER($(date +%Y.%m.%d))" package/base-files/files/etc/banner
 sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 
-# Modify default hosename
+# Modify default hostname
 sed -i 's/ImmortalWrt/SUPERouter/g' package/base-files/files/bin/config_generate
 # Password
 # sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::/$1$S2TRFyMU$E8fE0RRKR0jNadn3YLrSQ0:18690:0:99999:7:::/g' package/lean/default-settings/files/zzz-default-settings

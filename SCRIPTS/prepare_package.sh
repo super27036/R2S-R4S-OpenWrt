@@ -8,17 +8,6 @@ sed -i 's/Os/O2/g' include/target.mk
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-### 替换 feeds.conf.default 中的 luci URL ###
-OLD_URL="src-git luci https://github.com/immortalwrt/luci.git"
-NEW_URL="src-git luci https://github.com/super27035/R2S-R4S-Immortalwrt-luci.git"
-
-if grep -q "$OLD_URL" "feeds.conf.default"; then
-    sed -i "s|$OLD_URL|$NEW_URL|" "feeds.conf.default"
-    echo "已将 $OLD_URL 替换为 $NEW_URL"
-else
-    echo "未找到要替换的行：$OLD_URL"
-fi
-
 ### 必要的 Patches ###
 # mount cgroupv2
 # pushd feeds/packages

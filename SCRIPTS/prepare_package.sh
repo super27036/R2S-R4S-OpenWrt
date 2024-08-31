@@ -32,9 +32,6 @@ git clone https://github.com/jerrykuku/lua-maxminddb.git feeds/luci/applications
 # 完整克隆 luci-app-vssr 仓库
 git clone https://github.com/super27035/luci-app-vssr.git feeds/luci/applications/luci-app-vssr
 # -------------- #
-# Add luci-app-ssr-plus #
-git clone --depth=1 https://github.com/fw876/helloworld feeds/luci/applications/helloworld
-# -------------- #
 
 # WeChatPush
 rm -rf feeds/luci/applications/luci-app-wechatpush
@@ -59,8 +56,15 @@ git clone --depth 1 https://github.com/coolsnowwolf/luci.git /tmp/luci
 cp -rf /tmp/luci/applications/luci-app-frpc feeds/luci/applications/
 cp -rf /tmp/luci/applications/luci-app-frps feeds/luci/applications/
 
+# 从 super27035 仓库中获取 luci-app-ssr-plus 应用
+git clone --depth 1 https://github.com/super27035/small-package.git /tmp/small-package
+
+# 复制 luci-app-ssr-plus 应用到 feeds/luci/applications/
+cp -rf /tmp/small-package/luci-app-ssr-plus feeds/luci/applications/
+
 # 删除临时目录
 rm -rf /tmp/luci
+rm -rf /tmp/small-package
 # -------------- #
 
 ### 最后的收尾工作 ###

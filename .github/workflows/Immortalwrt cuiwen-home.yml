@@ -89,7 +89,7 @@ jobs:
       - name: Make Config
         run: |
           cd openwrt
-          mv ../SEED/config-cuiwen.seed .config
+          mv ../SEED/config-super.seed .config
           sed -i '/CONFIG_TARGET_ROOTFS_SQUASHFS/d' .config
           make defconfig
 

@@ -22,7 +22,7 @@ CONFIG_NODEJS_ICU_NONE=y
 ### BASIC ###
 CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_btop=y
-CONFIG_PACKAGE_coremark=y
+# CONFIG_PACKAGE_coremark=y
 CONFIG_PACKAGE_default-settings-chn=y
 CONFIG_PACKAGE_dos2unix=y
 CONFIG_PACKAGE_ethtool=y

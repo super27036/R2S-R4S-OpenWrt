@@ -26,6 +26,7 @@ jobs:
           else
             echo "CPU不为8370C或7763，性能不足，停止执行命令"
             exit 1
+          fi  # 这里添加了fi
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:

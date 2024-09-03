@@ -3,14 +3,8 @@ name: Immortalwrt super-work
 on:
   repository_dispatch:
   workflow_dispatch:
-  
-  # push:
-  #     branches:
-  #       - master
-  #     paths:
-  #       - 'SWITCH'
   schedule:
-    - cron: '0 3 1 * *'
+    - cron: '0 3 6 * *'
   watch:
     types: [started]
 
@@ -32,7 +26,7 @@ jobs:
           else
             echo "CPU不为8370C或7763，性能不足，停止执行命令"
             exit 1
-          fi
+          fi  # 这里添加了fi
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
@@ -132,7 +126,7 @@ jobs:
           cd ../openwrt
           cp .config ../artifact/config-full.seed
           ./scripts/diffconfig.sh > ../artifact/config-diff.seed
-          release_tag="R2S-R4S-super-work-$releaseTag-$(date +%Y-%m-%d)"
+          release_tag="R2S-R4S-super-work-${releaseTag}-$(date +%Y-%m-%d | tr -d '[:space:]')"
           echo "release_tag=${release_tag}" >>$GITHUB_ENV
       - name: Upload Artifact
         uses: actions/upload-artifact@main
@@ -146,7 +140,7 @@ jobs:
           name: ${{ env.release_tag }}-ROM
           allowUpdates: true
           tag: ${{ env.release_tag }}
-          commit: master
+          commit: ${{ github.sha }}  # 使用当前工作的 commit
           replacesArtifacts: true
           draft: false
           prerelease: false

@@ -4,6 +4,11 @@ clear
 ### 基础部分 ###
 # 使用 O2 级别的优化
 sed -i 's/Os/O2/g' include/target.mk
+
+### 集成 iStore ###
+# 在 feeds.conf.default 中添加 iStore 源
+echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
+
 # 更新 Feeds
 ./scripts/feeds update -a
 ./scripts/feeds install -a

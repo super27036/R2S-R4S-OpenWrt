@@ -76,7 +76,7 @@ sed -i "/%D/a\ Built by SUPER($(date +%Y.%m.%d))" package/base-files/files/etc/b
 sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generate
 
 # Disable ipv6
-sed -i 's/def_bool y/def_bool n/g' config/Config-build.in
+# sed -i 's/def_bool y/def_bool n/g' config/Config-build.in
 
 # Modify default hostname
 sed -i 's/ImmortalWrt/SUPERouter/g' package/base-files/files/bin/config_generate

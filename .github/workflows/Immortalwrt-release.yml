@@ -9,7 +9,7 @@ on:
   #       - master
   #     paths:
   #       - 'SWITCH'
-  schedule:
+  # schedule:
     - cron: '0 3 2 * *'
   watch:
     types: [started]

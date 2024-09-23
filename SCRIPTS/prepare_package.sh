@@ -9,6 +9,10 @@ sed -i 's/Os/O2/g' include/target.mk
 # 在 feeds.conf.default 中添加 iStore 源
 echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
 
+### 集成 helloworld ###
+# 在 feeds.conf.default 中添加 helloworld 源
+echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
+
 # 更新 Feeds
 ./scripts/feeds update -a
 ./scripts/feeds install -a

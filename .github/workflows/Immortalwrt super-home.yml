@@ -67,8 +67,9 @@ jobs:
       - name: Prepare Sources
         id: prepare
         run: |
+          sudo chown -R runner:runner /home/runner/work/R2S-R4S-OpenWrt
           git clone -b ${latest_release} --depth 1 https://github.com/super27036/immortalwrt.git openwrt
-          echo "latest_release=${latest_release}" >>$GITHUB_ENV
+          echo "hi" >>$GITHUB_ENV
       - name: Prepare Package
         run: |
           cd openwrt

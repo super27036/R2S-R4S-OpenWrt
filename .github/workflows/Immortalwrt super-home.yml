@@ -26,7 +26,7 @@ jobs:
           else
             echo "CPU不为8370C或7763，性能不足，停止执行命令"
             exit 1
-          fi  # 这里添加了fi
+          fi
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
@@ -64,13 +64,12 @@ jobs:
           df -h
       - name: Checkout
         uses: actions/checkout@main
+
       - name: Prepare Sources
-        id: prepare
         run: |
-          sudo chown -R runner:runner /home/runner/work/R2S-R4S-OpenWrt
-          latest_release="$(curl -s https://github.com/immortalwrt/immortalwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][0-9]/p' | sed -n 1p | sed 's/.tar.gz//g')"
-          git clone -b ${latest_release} --depth 1 https://github.com/immortalwrt/immortalwrt.git openwrt
-          echo "latest_release=${latest_release}" >>$GITHUB_ENV
+          git clone --branch master --depth 1 https://github.com/super27036/immortalwrt.git openwrt
+          echo "release_tag=super-home-$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
       - name: Prepare Package
         run: |
           cd openwrt
@@ -101,6 +100,7 @@ jobs:
           df -h
           cd openwrt
           make download -j50
+
       - name: Compile Openwrt
         id: compileopenwrt
         continue-on-error: true
@@ -109,14 +109,17 @@ jobs:
           cd openwrt
           make -j$(($(nproc) + 1)) || make -j$(($(nproc) + 1)) V=s
           echo $?
+
       - name: If Error
         if: steps.compileopenwrt.outcome == 'failure'
         run: |
           cat openwrt/.config
           echo '================================================================'
           cd openwrt && make -j1 V=s
+
       - name: Print Disk Space After
         run: df -h
+
       - name: Assemble Artifact
         id: assemble_artifact
         run: |
@@ -126,22 +129,23 @@ jobs:
           cd ./artifact/
           gzip -d *.gz && exit 0
           gzip *.img
-          releaseTag=${{ env.latest_release }}
-          sha256sum *.gz | tee R2S-R4S-super-home-$releaseTag-$(date +%Y-%m-%d).sha256sum
-          mv *r2s*ext4* ./R2S-super-home-$releaseTag-$(date +%Y-%m-%d)-ext4.img.gz
-          mv *r4s*ext4* ./R4S-super-home-$releaseTag-$(date +%Y-%m-%d)-ext4.img.gz
-          mv *r2s*squashfs* ./R2S-super-home-$releaseTag-$(date +%Y-%m-%d)-sfs.img.gz
-          mv *r4s*squashfs* ./R4S-super-home-$releaseTag-$(date +%Y-%m-%d)-sfs.img.gz
+          sha256sum *.gz | tee R2S-R4S-super-home-$(date +%Y-%m-%d).sha256sum
+          mv *r2s*ext4* ./R2S-super-home-$(date +%Y-%m-%d)-ext4.img.gz
+          mv *r4s*ext4* ./R4S-super-home-$(date +%Y-%m-%d)-ext4.img.gz
+          mv *r2s*squashfs* ./R2S-super-home-$(date +%Y-%m-%d)-sfs.img.gz
+          mv *r4s*squashfs* ./R4S-super-home-$(date +%Y-%m-%d)-sfs.img.gz
           cd ../openwrt
           cp .config ../artifact/config-full.seed
           ./scripts/diffconfig.sh > ../artifact/config-diff.seed
-          release_tag="R2S-R4S-super-home-${releaseTag}-$(date +%Y-%m-%d | tr -d '[:space:]')"
+          release_tag="R2S-R4S-super-home-$(date +%Y-%m-%d)"
           echo "release_tag=${release_tag}" >>$GITHUB_ENV
+
       - name: Upload Artifact
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.release_tag }}-artifact
           path: ./artifact/
+
       - name: Create release
         id: create_release
         uses: ncipollo/release-action@main
